@@ -1,7 +1,6 @@
 import { AuthService } from './../_services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Route } from '@angular/router/src/config';
 import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
@@ -15,7 +14,8 @@ export class NavComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class NavComponent implements OnInit {
         this.alertify.error(error);
       },
       () => {
-        //  this.router.navigate(['/members']);
+        this.router.navigate(['/members']);
       }
     );
   }
@@ -47,6 +47,6 @@ export class NavComponent implements OnInit {
     // this.authService.decodedToken = null;
     // this.authService.currentUser = null;
     // this.alertify.message('logged out');
-    // this.router.navigate(['/home']);
+    this.router.navigate(['/home']);
   }
 }
